@@ -1,59 +1,149 @@
-import React, { useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { supabase } from "../lib/api";
+import RecoverPassword from "./RecoverPassword";
+import TodoItem from "./TodoItem";
 
-function Home() {
-	const [mode, setMode] = useState(false);
-  
-	return (
-		<div className={`container mx-auto ${mode && 'dark'}`}>
-			<div className="lg:mx-32 lg:mt-12">
-				<nav className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-center pb-5 pt-4 px-2 md:px-0">
-					<div className="font-cond text-4xl whitespace-nowrap">
-						<a href="https://haecal.my.id">
-							<span className="text-red-500">m</span>
-							<span className="dark:text-white">haecal</span>
-						</a>
-					</div>
-					<div>
-						<ul className="flex lg:text-lg items-center space-x-4 lg:space-x-10 py-2 lg:py-0 dark:text-white">
-							<li className="border-b-4 border-red-500">
-								<a href="https://haecal.my.id/#docs">dokumentasi</a>
-							</li>
-							<li className="border-b-4 border-red-500">
-								<a href="https://haecal.my.id/#projects">project</a>
-							</li>
-							<li>
-								<a id="switchTheme" className="cursor-pointer focus:outline-none" onClick={() => setMode(!mode)}>
-									<svg
-										id="sun"
-										className={`w-6 h-6 text-red-500 ${mode && 'hidden'}`}
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fill-rule="evenodd"
-											d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-											clip-rule="evenodd"
-										/>
-									</svg>
+const Home = ({ user }) => {
+	const [recoveryToken, setRecoveryToken] = useState(null);
+	const [todos, setTodos] = useState([]);
+	const newTaskTextRef = useRef();
+	const [errorText, setError] = useState("");
 
-									<svg
-										id="moon"
-										className={`w-6 h-6 text-white ${!mode && 'hidden'}`}
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-									</svg>
-								</a>
-							</li>
-						</ul>
+	useEffect(() => {
+		/* Recovery url is of the form
+		 * <SITE_URL>#access_token=x&refresh_token=y&expires_in=z&token_type=bearer&type=recovery
+		 * Read more on https://supabase.com/docs/reference/javascript/reset-password-email#notes
+		 */
+		let url = window.location.hash;
+		let query = url.slice(1);
+		let result = {};
+
+		query.split("&").forEach((part) => {
+			const item = part.split("=");
+			result[item[0]] = decodeURIComponent(item[1]);
+		});
+
+		if (result.type === "recovery") {
+			setRecoveryToken(result.access_token);
+		}
+
+		fetchTodos().catch(console.error);
+	}, []);
+
+	const fetchTodos = async () => {
+		let { data: todos, error } = await supabase
+			.from("todos")
+			.select("*")
+			.order("id", { ascending: false });
+		if (error) console.log("error", error);
+		else setTodos(todos);
+	};
+
+	const deleteTodo = async (id) => {
+		try {
+			await supabase.from("todos").delete().eq("id", id);
+			setTodos(todos.filter((x) => x.id !== id));
+		} catch (error) {
+			console.log("error", error);
+		}
+	};
+
+	const addTodo = async () => {
+		let taskText = newTaskTextRef.current.value;
+		let task = taskText.trim();
+		if (task.length <= 3) {
+			setError("Task length should be more than 3!");
+		} else {
+			let { data: todo, error } = await supabase
+				.from("todos")
+				.insert({ task, user_id: user.id })
+				.single();
+			if (error) setError(error.message);
+			else {
+				setTodos([todo, ...todos]);
+				setError(null);
+				newTaskTextRef.current.value = "";
+			}
+		}
+	};
+
+	const handleLogout = async () => {
+		supabase.auth.signOut().catch(console.error);
+	};
+
+	return recoveryToken ? (
+		<RecoverPassword
+			token={recoveryToken}
+			setRecoveryToken={setRecoveryToken}
+		/>
+	) : (
+		<div className={"w-screen fixed flex flex-col min-h-screen bg-gray-50"}>
+			<header
+				className={"flex justify-between items-center px-4 h-16 bg-gray-900"}
+			>
+				<span className={"text-2xl sm:text-4xl text-white border-b font-sans"}>
+					Todo List.
+				</span>
+				<button
+					onClick={handleLogout}
+					className={
+						"flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
+					}
+				>
+					Logout
+				</button>
+			</header>
+			<div
+				className={"flex flex-col flex-grow p-4"}
+				style={{ height: "calc(100vh - 11.5rem)" }}
+			>
+				<div
+					className={`p-2 border flex-grow grid gap-2 ${
+						todos.length ? "auto-rows-min" : ""
+					} grid-cols-1 h-2/3 overflow-y-scroll first:mt-8`}
+				>
+					{todos.length ? (
+						todos.map((todo) => (
+							<TodoItem
+								key={todo.id}
+								todo={todo}
+								onDelete={() => deleteTodo(todo.id)}
+							/>
+						))
+					) : (
+						<span className={"h-full flex justify-center items-center"}>
+							You do have any tasks yet!
+						</span>
+					)}
+				</div>
+				{!!errorText && (
+					<div
+						className={
+							"border max-w-sm self-center px-4 py-2 mt-4 text-center text-sm bg-red-100 border-red-300 text-red-400"
+						}
+					>
+						{errorText}
 					</div>
-				</nav>
+				)}
+			</div>
+			<div className={"flex m-4 mt-0 h-10"}>
+				<input
+					ref={newTaskTextRef}
+					type="text"
+					onKeyUp={(e) => e.key === "Enter" && addTodo()}
+					className={"bg-gray-200 border px-2 border-gray-300 w-full mr-4"}
+				/>
+				<button
+					onClick={addTodo}
+					className={
+						"flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
+					}
+				>
+					Add
+				</button>
 			</div>
 		</div>
 	);
-}
+};
 
 export default Home;
