@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { FaFacebook, FaTwitter, FaSync, FaQuoteLeft } from "react-icons/fa";
 import Nav from "./components/Nav";
+import Hero from "./components/Hero";
 
 const API =
 	"https://raw.githubusercontent.com/15Dkatz/official_joke_api/master/jokes/index.json";
@@ -59,6 +60,7 @@ class App extends React.Component {
 		return (
 			<>
       <Nav />
+      <Hero />
 				<div className="flex flex-col min-h-screen">
 					<header className="flex flex-col items-center justify-center p-8">
 						<img

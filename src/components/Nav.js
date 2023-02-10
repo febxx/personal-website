@@ -10,11 +10,7 @@ function Nav() {
 			<div class="font-cond text-4xl whitespace-nowrap">
 				<a href="/">
 					<span class="text-primary">f</span>
-					<span class="dark:text-white">ebri </span>
-					<span class="text-primary">a</span>
-					<span class="dark:text-white">ji </span>
-					<span class="text-primary">m</span>
-					<span class="dark:text-white">aulana</span>
+					<span class="dark:text-white">ebri aji maulana</span>
 				</a>
 			</div>
 			<div>
