@@ -1,15 +1,15 @@
 import React from "react";
-import Nav from "./components/Nav";
-import Hero from "./components/Hero";
-import Project from "./components/Project";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
+import {Routes, Route} from "react-router-dom"
 import Background from "./components/Background";
-
 function App() {
   return (
     <Background>
-      <Nav />
-      <Hero />
-      <Project />
+      <Routes>
+        <Route element={<Home />} path='/' />
+        <Route element={<Admin />} path='/febri' />
+      </Routes>
     </Background>
   );
 }

@@ -1,60 +1,58 @@
 import React from "react";
+import img from '../assets/projects/digilib.png';
 
 function Hero() {
 	return (
 		<div className="mb-16">
         <h1 className="font-cond font-bold text-gray-800 dark:text-white text-xl px-2 md:px-0 py-2"><span
-            className="text-red-500" id="projects">#</span> Project</h1>
+            className="text-primary" id="projects">#</span> Recently Project</h1>
+
         <div className="mb-6 grid lg:grid-cols-3 gap-2 container px-3 lg:px-0">
-          <a className="bg-gray-100 dark:bg-gray-800" href="https://cubicash.com">
+          <div className="bg-gray-100 dark:bg-gray-800" href="">
             <div className="p-4 text-gray-600 dark:text-white rounded-md">
-              <img className="rounded-md mb-4 filter grayscale" src="https://haecal.my.id/img/cubicash.png" alt="CUBICASH"/>
-              <h1 className="mb-1 font-semibold text-lg">CUBICASH</h1>
-              <p className="mb-2 text-xs text-gray-500 dark:text-gray-300">Fullstack Developer</p>
-              <p className="mb-4 text-gray-600 dark:text-gray-100">Online game voucher & top up service</p>
+              <img className="rounded-md mb-4" src={img} alt="CUBICASH"/>
+              <h1 className="mb-1 font-semibold text-lg">Digital Library Poliwangi</h1>
+              <p className="mb-4 text-gray-600 dark:text-gray-100">Digital Library (Digilib) Poliwangi adalah sistem informasi dan pencatatan data Buku, Proposal dan Laporan Proyek Akhir Mahasiswa pada Politeknik Negeri Banyuwangi.</p>
               <div className="">
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5">Laravel</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">PHP</span>
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5">Bootstrap</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">SLiMS CMS</span>
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5">Livewire</span>
-                <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5">MySQL</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">MySQL</span>
               </div>
             </div>
-          </a>
-          <a className="bg-gray-100 dark:bg-gray-800" href="https://kanno.id">
+          </div>
+          <div className="bg-gray-100 dark:bg-gray-800" href="">
             <div className="p-4 text-gray-600 dark:text-white rounded-md">
-              <img className="rounded-md mb-4 filter grayscale" src="https://haecal.my.id/img/kanno.png" alt="Kanno"/>
-              <h1 className="mb-1 font-semibold text-lg">Kanno</h1>
-              <p className="mb-2 text-xs text-gray-500 dark:text-gray-300"><span>Front End Developer (Freelance)</span></p>
-              <p className="mb-4 text-gray-600 dark:text-gray-100">Freelance service provider platform</p>
+              <img className="rounded-md mb-4" src={img} alt="CUBICASH"/>
+              <h1 className="mb-1 font-semibold text-lg">Digital Library Poliwangi</h1>
+              <p className="mb-4 text-gray-600 dark:text-gray-100">Digital Library (Digilib) Poliwangi adalah sistem informasi dan pencatatan data Buku, Proposal dan Laporan Proyek Akhir Mahasiswa pada Politeknik Negeri Banyuwangi.</p>
               <div className="">
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1">Tailwind</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">PHP</span>
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1">Gulp</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">SLiMS CMS</span>
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1">Nunjucks</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">MySQL</span>
               </div>
             </div>
-          </a>
-          <a className="bg-gray-100 dark:bg-gray-800" href="https://mhaecal.github.io/simplicity">
+          </div>
+          <div className="bg-gray-100 dark:bg-gray-800" href="">
             <div className="p-4 text-gray-600 dark:text-white rounded-md">
-              <img className="rounded-md mb-4 filter grayscale" src="https://haecal.my.id/img/simplicity.png"
-                alt="Simplicity Admin"/>
-              <h1 className="mb-1 font-semibold text-lg">Simplicity</h1>
-              <p className="mb-2 text-xs text-gray-500 dark:text-gray-300"><span>Front End Developer</span></p>
-              <p className="mb-4 text-gray-600 dark:text-gray-100">Simple & clean admin dashboard</p>
+              <img className="rounded-md mb-4" src={img} alt="CUBICASH"/>
+              <h1 className="mb-1 font-semibold text-lg">Digital Library Poliwangi</h1>
+              <p className="mb-4 text-gray-600 dark:text-gray-100">Digital Library (Digilib) Poliwangi adalah sistem informasi dan pencatatan data Buku, Proposal dan Laporan Proyek Akhir Mahasiswa pada Politeknik Negeri Banyuwangi.</p>
               <div className="">
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1">Tailwind</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">PHP</span>
                 <span
-                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1">Vue</span>
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">SLiMS CMS</span>
+                <span
+                  className="inline-block bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 rounded text-sm px-3 py-1 my-0.5 mr-1.5">MySQL</span>
               </div>
             </div>
-          </a>
+          </div>
         </div>
         <a href="https://haecal.my.id/projects">
           <button className="text-gray-700 dark:text-gray-300 text-center w-full focus:outline-none">--- Lebih banyak
