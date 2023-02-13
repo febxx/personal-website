@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient";
 
-function ProjectItem({ id, title, description, image }) {
+function ProjectItem({ id, title, description, image, url }) {
 	const [tags, setTags] = useState([]);
 
 	useEffect(() => {
 		getTags();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const getTags = async () => {
@@ -27,11 +29,13 @@ function ProjectItem({ id, title, description, image }) {
 	return (
 		<div className="bg-gray-100 dark:bg-gray-800" href="">
 			<div className="p-4 text-gray-600 dark:text-white rounded-md">
-				<img
+				<a href={url}>
+        <img
 					className="rounded-md mb-4"
 					src={`https://wftnjhfflmgweuuiovjo.supabase.co/storage/v1/object/public/images/${image}`}
 					alt={title}
 				/>
+        </a>
 				<h1 className="mb-1 font-semibold text-lg">{title}</h1>
 				<p className="mb-4 text-gray-600 dark:text-gray-100">{description}</p>
 				<div className="">

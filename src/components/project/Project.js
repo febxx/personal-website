@@ -17,7 +17,8 @@ function Project() {
 			const { error, data } = await supabase
 				.from("projects")
 				.select("*")
-				.order("id", { ascending: false });
+				.order("id", { ascending: false })
+        .limit(6);
 
 			if (error) throw error;
 			if (data) {
@@ -43,20 +44,26 @@ function Project() {
 				{loading
 					? "Loading.."
 					: projects.map((value, index) => {
-							return <ProjectItem
-                id={value.id}
-								title={value.title}
-								description={value.description}
-                image={value.image}
-							/>;
-					  })
-        }
+							return (
+								<ProjectItem
+									id={value.id}
+									title={value.title}
+									description={value.description}
+									image={value.image}
+									url={value.url}
+								/>
+							);
+					  })}
 			</div>
-			<a href="https://haecal.my.id/projects">
-				<button className="text-gray-700 dark:text-gray-300 text-center w-full focus:outline-none">
-					--- Lebih banyak ---
-				</button>
-			</a>
+			{loading ? (
+				""
+			) : (
+				<a href="/projects">
+					<button className="text-gray-700 dark:text-gray-300 text-center w-full focus:outline-none">
+						Show More
+					</button>
+				</a>
+			)}
 		</div>
 	);
 }

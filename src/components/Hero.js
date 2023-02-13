@@ -1,4 +1,5 @@
 import React from "react";
+import { FaGithub, FaInstagram, FaLinkedin, FaTelegram } from "react-icons/fa";
 
 function Hero() {
 	return (
@@ -17,6 +18,20 @@ function Hero() {
 				<p className="text-sm dark:text-gray-300 font-cond">
 					<span className="text-primary">Software Developer</span>
 				</p>
+				<ul className="flex justify-center space-x-4 items-center py-2 lg:py-0 dark:text-white mt-4 text-lg">
+					<li className="">
+						<a href="https://github.com/febxx"><FaGithub/></a>
+					</li>
+					<li className="">
+						<a href="https://www.instagram.com/febriajimaulana/"><FaInstagram/></a>
+					</li>
+					<li className="">
+						<a href="https://www.linkedin.com/in/febri-aji-maulana/"><FaLinkedin/></a>
+					</li>
+					<li className="">
+						<a href="https://t.me/febxx"><FaTelegram/></a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	);
