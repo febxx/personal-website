@@ -16,6 +16,9 @@ function Nav() {
 			<div>
 				<ul className="flex lg:text-lg items-center space-x-4 lg:space-x-10 py-2 lg:py-0 dark:text-white">
 					<li className="border-b-4 border-primary">
+						<a href="/projects">About</a>
+					</li>
+					<li className="border-b-4 border-primary">
 						<a href="/projects">Project</a>
 					</li>
 					<li>
@@ -23,7 +26,7 @@ function Nav() {
 							{theme === "dark" ? (
 								<FaSun
 									onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-									className="text-primary text-xl cursor-pointer"
+									className="text-white text-xl cursor-pointer"
 								/>
 							) : (
 								<FaMoon
