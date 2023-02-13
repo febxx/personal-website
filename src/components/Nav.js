@@ -6,20 +6,17 @@ function Nav() {
 	const { theme, setTheme } = useContext(ThemeContext);
 
 	return (
-		<nav class="flex flex-col lg:flex-row lg:justify-between items-center lg:items-center pb-5 pt-4 px-2 md:px-0">
-			<div class="font-cond text-4xl whitespace-nowrap">
+		<nav className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-center pb-5 pt-4 px-2 md:px-0">
+			<div className="font-cond text-4xl whitespace-nowrap">
 				<a href="/">
-					<span class="text-primary">f</span>
-					<span class="dark:text-white">ebri aji maulana</span>
+					<span className="text-primary">F</span>
+					<span className="dark:text-white">ebri Aji Maulana</span>
 				</a>
 			</div>
 			<div>
-				<ul class="flex lg:text-lg items-center space-x-4 lg:space-x-10 py-2 lg:py-0 dark:text-white">
-					<li class="border-b-4 border-primary">
-						<a href="https://haecal.my.id/#docs">dokumentasi</a>
-					</li>
-					<li class="border-b-4 border-primary">
-						<a href="https://haecal.my.id/#projects">project</a>
+				<ul className="flex lg:text-lg items-center space-x-4 lg:space-x-10 py-2 lg:py-0 dark:text-white">
+					<li className="border-b-4 border-primary">
+						<a href="/projects">Project</a>
 					</li>
 					<li>
 						<div className="transition duration-500 ease-in-out rounded-full p-2">

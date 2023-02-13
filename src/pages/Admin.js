@@ -1,16 +1,28 @@
 import React from "react";
 import Nav from "../components/Nav";
-import Hero from "../components/Hero";
-import Project from "../components/Project";
+import Auth from "../components/Auth";
+import Create from "../components/admin/Create";
 
-function App() {
+import { useEffect } from "react";
+import { supabase } from "../supabaseClient";
+
+function Admin() {
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((_event, session) => {
+      console.log(session);
+      if (session === null) {
+        <Auth />
+      }
+    });
+  }, []);
+
 	return (
 		<>
 			<Nav />
-			<Hero />
-			<Project />
+			<Create />
 		</>
 	);
 }
 
-export default App;
+export default Admin;

@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
-import Project from "../components/Project";
+import Project from "../components/project/Project";
 
 function App() {
 	return (
