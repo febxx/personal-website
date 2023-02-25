@@ -39,7 +39,7 @@ function Technology() {
 				Tech & Tools
 			</h1>
 
-			<div className="my-3 grid grid-cols-5 lg:grid-cols-10 md:grid-cols-8 sm:grid-cols-5 lg:gap-10 sm:gap-10 container px-3 lg:px-0">
+			<div className="my-3 grid grid-cols-5 gap-4 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-5 lg:gap-10 sm:gap-10 container px-3 lg:px-0">
 				{loading ? (
 					<Loading />
 				) : (
