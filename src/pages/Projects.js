@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient";
 import React, { useState, useEffect } from "react";
 
 import ProjectItem from "../components/Project/ProjectItem";
+import Loading from "../components/Loading";
 
 function Projects() {
 	const [projects, setProjects] = useState([]);
@@ -37,7 +38,7 @@ function Projects() {
 		<div className="my-16">
 			<div className="mb-6 grid lg:grid-cols-3 gap-2 container px-3 lg:px-0">
 				{loading
-					? "Loading.."
+					? <Loading/>
 					: projects.map((value, index) => {
 							return (
 								<ProjectItem
