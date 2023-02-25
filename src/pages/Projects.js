@@ -2,7 +2,7 @@ import Nav from "../components/Nav";
 import { supabase } from "../supabaseClient";
 import React, { useState, useEffect } from "react";
 
-import ProjectItem from "../components/project/ProjectItem";
+import ProjectItem from "../components/Project/ProjectItem";
 
 function Projects() {
 	const [projects, setProjects] = useState([]);

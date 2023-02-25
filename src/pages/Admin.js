@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Auth from "../components/Auth";
-import Create from "../components/admin/Create";
+import Create from "../components/Admin/Create";
 
 import { useEffect } from "react";
 import { supabase } from "../supabaseClient";
